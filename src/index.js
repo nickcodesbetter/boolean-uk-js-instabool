@@ -79,10 +79,48 @@ fetch("http://localhost:3000/images")
   const animalCoderDivEl = document.createElement("div")
   animalCoderDivEl.className = "likes-section"
 
+  const animalCoderSpanEl = document.createElement("span")
+  animalCoderSpanEl.innerText = animalCoderCard.likes
+  // how do you write the word likes after?
+  animalCoderSpanEl.innerHTML = "likes"
+  animalCoderSpanEl.className = "likes"
+
+  const animalCoderButtonEl = document.createElement("button")
+  animalCoderButtonEl.className = "like-button"
+  animalCoderButtonEl.innerHTML = "♥"
+
+const animalCoderUlEl = document.createElement("ul")
+animalCoderUlEl.className = "comments"
+
+const animalCoderLiEl = document.createElement("li")
+
+const animalCoderFormEl = document.createElement("form")
+animalCoderFormEl.className = "comment-form"
+
+const animalCoderInputEl = document.createElement("input")
+animalCoderInputEl.className = "comment-input"
+animalCoderInputEl.type = "text"
+animalCoderInputEl.name = "comment"
+animalCoderInputEl.placeholder = "Add a comment"
+
+const animalCoderCommentButtonEl = document.createElement("button")
+animalCoderCommentButtonEl.className = "comment-button"
+animalCoderCommentButtonEl.type = "submit"
+animalCoderCommentButtonEl.innerHTML = "Post"
+
+
+
  animalCoderCardEl.append(animalCoderHeaderEl)
  animalCoderCardEl.append(animalCoderImageEl)
  animalCoderCardEl.append(animalCoderDivEl)
-  }
+ animalCoderDivEl.append(animalCoderSpanEl)
+ animalCoderDivEl.append(animalCoderButtonEl)
+ animalCoderCardEl.append(animalCoderUlEl)
+ animalCoderUlEl.append(animalCoderLiEl)
+ animalCoderCardEl.append(animalCoderInputEl)
+ animalCoderCardEl.append(animalCoderCommentButtonEl)
+ 
+}
 
     // <h2 class="title">Title of image goes here</h2>
     // <img src="./assets/image-placeholder.jpg" class="image" />
