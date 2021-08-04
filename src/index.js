@@ -39,6 +39,30 @@ fetch("http://localhost:3000/images")
     // Do something with products
   })
 
+// Should I keep this here, grouping the fetches and linking the aniimalCoderLike Button?
+// Edit - keep this within the button, within the function
+// const fetchLikes = {
+//     method: "PATCH",
+//     headers: {
+//     "Content-Type": "application/json"
+//   },
+  
+//     body: JSON.stringify({likes: animalCoderCard.likes + 1})
+  
+//    };
+  
+//     fetch(`http://localhost:3000/images/${animalCoderCard.id}`, fetchLikes)
+//     .then((response) => response.json())
+//     .then((addedLikes) => {
+//     console.log("addedLikes: ", addedLikes);
+//   // .innerHTML? 
+//     spanEl.innerText = `${animalCoderCard.likes += 1} likes`;
+  
+  // Link to animalCoderLikeButton here?
+
+//     });
+  
+  
   // renderAnimalCodersList()
 
   // input: an array of images
@@ -46,7 +70,8 @@ fetch("http://localhost:3000/images")
 
   const animalCodersListEl = document.querySelector(".image-container")
   const animalCoderCardEl = document.querySelector(".image-card")
-
+  
+  
   function renderAnimalCodersList(animalCodersList) {
   console.log("Inside renderImagesList: ", animalCodersList)
 
@@ -63,13 +88,13 @@ fetch("http://localhost:3000/images")
   // input: an object 
   // output: an article element 
   function renderAnimalCoderCard(animalCoderCard) {
-    console.log("Inside renderImagesList: ", animalCoderCard)
+    console.log("Inside animalCoderCard: ", animalCoderCard)
 
     const animalCoderCardEl = document.createElement("article");
-    console.log("animalCodersCardEl: ", animalCoderCardEl)
+    console.log("animalCoderCardEl: ", animalCoderCardEl)
 
     const animalCoderHeaderEl = document.createElement("h2");
-  animalCoderHeaderEl.innerText = animalCoderCard.title
+    animalCoderHeaderEl.innerText = animalCoderCard.title
     animalCoderHeaderEl.className = "title"
 
     const animalCoderImageEl = document.createElement("img")
@@ -81,13 +106,39 @@ fetch("http://localhost:3000/images")
 
   const animalCoderSpanEl = document.createElement("span")
   animalCoderSpanEl.innerText = animalCoderCard.likes
-  // how do you write the word likes after?
+  // how do you write the word likes after? corrected
   animalCoderSpanEl.innerHTML = "likes"
   animalCoderSpanEl.className = "likes"
 
-  const animalCoderButtonEl = document.createElement("button")
-  animalCoderButtonEl.className = "like-button"
-  animalCoderButtonEl.innerHTML = "♥"
+  const animalCoderLikeButtonEl = document.createElement("button")
+  animalCoderLikeButtonEl.className = "like-button"
+  animalCoderLikeButtonEl.innerHTML = "♥"
+
+  animalCoderLikeButtonEl.addEventListener("click", () => {
+  // or images?
+  console.log("clicked", animalCoderCard.id, animalCoderCard.likes);
+
+  const fetchLikes = {
+  method: "PATCH",
+  headers: {
+  "Content-Type": "application/json"
+},
+
+  body: JSON.stringify({likes: animalCoderCard.likes + 1})
+
+ };
+
+  fetch(`http://localhost:3000/images/${animalCoderCard.id}`, fetchLikes)
+  .then((response) => response.json())
+  .then((addedLikes) => {
+  console.log("addedLikes: ", addedLikes);
+// .innerHTML? 
+  spanEl.innerText = `${animalCoderCard.likes += 1} likes`;
+
+
+  });
+
+})
 
 const animalCoderUlEl = document.createElement("ul")
 animalCoderUlEl.className = "comments"
@@ -108,13 +159,11 @@ animalCoderCommentButtonEl.className = "comment-button"
 animalCoderCommentButtonEl.type = "submit"
 animalCoderCommentButtonEl.innerHTML = "Post"
 
-
-
  animalCoderCardEl.append(animalCoderHeaderEl)
  animalCoderCardEl.append(animalCoderImageEl)
  animalCoderCardEl.append(animalCoderDivEl)
  animalCoderDivEl.append(animalCoderSpanEl)
- animalCoderDivEl.append(animalCoderButtonEl)
+ animalCoderDivEl.append(animalCoderLikeButtonEl)
  animalCoderCardEl.append(animalCoderUlEl)
  animalCoderUlEl.append(animalCoderLiEl)
  animalCoderCardEl.append(animalCoderInputEl)
