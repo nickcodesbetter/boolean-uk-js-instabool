@@ -80,6 +80,8 @@ fetch("http://localhost:3000/images")
   animalCoderDivEl.className = "likes-section"
 
  animalCoderCardEl.append(animalCoderHeaderEl)
+ animalCoderCardEl.append(animalCoderImageEl)
+ animalCoderCardEl.append(animalCoderDivEl)
   }
 
     // <h2 class="title">Title of image goes here</h2>
